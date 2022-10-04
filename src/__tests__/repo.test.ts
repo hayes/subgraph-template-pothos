@@ -1,18 +1,9 @@
-import { buildSubgraphSchema } from "@apollo/subgraph";
+
 import { ApolloServer } from "@apollo/server";
-import { readFileSync } from "fs";
-import gql from "graphql-tag";
-import resolvers from "../resolvers";
+import { schema } from "../schema";
 
 const server = new ApolloServer({
-  schema: buildSubgraphSchema({
-    typeDefs: gql(
-      readFileSync("schema.graphql", {
-        encoding: "utf-8",
-      })
-    ),
-    resolvers,
-  }),
+  schema: schema,
 });
 
 describe("Repository Template Functionality", () => {

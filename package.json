@@ -1,16 +1,16 @@
 {
-  "name": "subgraph-template-typescript-apollo-server",
+  "name": "subgraph-template-pothos",
   "private": true,
   "description": "A template for TypeScript projects with pre-configured tooling",
   "version": "0.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/apollographql/subgraph-template-typescript-apollo-server"
+    "url": "https://github.com/hayes/subgraph-template-pothos"
   },
-  "homepage": "https://github.com/apollographql/subgraph-template-typescript-apollo-server#readme",
+  "homepage": "https://github.com/hayes/subgraph-template-pothos#readme",
   "bugs": {
-    "url": "https://github.com/apollographql/subgraph-template-typescript-apollo-server/issues"
+    "url": "https://github.com/hayes/subgraph-template-pothos/issues"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,8 +18,7 @@
     "node": ">=14.0"
   },
   "scripts": {
-    "build": "npm run codegen && tsc",
-    "codegen": "graphql-codegen",
+    "build": "tsc",
     "postinstall": "npm run build",
     "start": "node dist/index.js",
     "dev": "nodemon --watch \"src/**\" --ext \"ts,json,graphql\" --exec \"npm run build && npm run start\" --ignore ./src/__generated__/ --ignore ./src/datasources/BarAPI.ts",
@@ -27,9 +26,11 @@
   },
   "dependencies": {
     "@apollo/server": "^4.0.0-rc.15",
-    "@apollo/subgraph": "latest",
-    "graphql": "latest",
-    "graphql-tag": "latest"
+    "@apollo/subgraph": "^2.1.3",
+    "@pothos/core": "^3.22.5",
+    "@pothos/plugin-directives": "^3.7.4",
+    "@pothos/plugin-federation": "^3.5.4",
+    "graphql": "latest"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.6.2",

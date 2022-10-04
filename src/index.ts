@@ -1,6 +1,3 @@
-import { readFileSync } from "fs";
-import gql from "graphql-tag";
-import { buildSubgraphSchema } from "@apollo/subgraph";
 import { ApolloServer, ContextFunction } from "@apollo/server";
 import {
   StandaloneServerContextFunctionArgument,
@@ -8,9 +5,9 @@ import {
 } from "@apollo/server/standalone";
 
 const port = process.env.PORT ?? "4001";
-import resolvers from "./resolvers";
 const subgraphName = require("../package.json").name;
 import { DataSourceContext } from "./types/DataSourceContext";
+import { schema } from "./schema";
 
 const context: ContextFunction<
   [StandaloneServerContextFunctionArgument],
@@ -20,13 +17,8 @@ const context: ContextFunction<
 });
 
 async function main() {
-  let typeDefs = gql(
-    readFileSync("schema.graphql", {
-      encoding: "utf-8",
-    })
-  );
   const server = new ApolloServer({
-    schema: buildSubgraphSchema({ typeDefs, resolvers }),
+    schema: schema,
   });
   const { url } = await startStandaloneServer(server, {
     context,
